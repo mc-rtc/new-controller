@@ -17,6 +17,7 @@ Quick start
 sed -i -e's/NewController/MyController/g' `find . -type f`
 git mv src/NewController.cpp src/MyController.cpp
 git mv src/NewController.h src/MyController.h
+git mv etc/NewController.in.yaml etc/MyController.in.yaml
 ```
 
 2. You can customize the project name in vcpkg.json as well, note that this must follow [vcpkg manifest rules](https://github.com/microsoft/vcpkg/blob/master/docs/users/manifests.md)
