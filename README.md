@@ -1,10 +1,10 @@
 mc\_rtc new controller template
 ==
 
-This project is a template for a new controller project wihtin mc\_rtc
+This project is a template for a new controller project wihtin [mc\_rtc]
 
 It comes with:
-- a CMake project that can build a controller in mc\_rtc (can be established within mc\_rtc source-tree for easier updates)
+- a CMake project that can build a controller in [mc\_rtc], the project can be put within [mc\_rtc] source-tree for easier updates
 - clang-format files
 - automated GitHub Actions builds on three major platforms
 
@@ -19,8 +19,10 @@ git mv src/NewController.cpp src/MyController.cpp
 git mv src/NewController.h src/MyController.h
 ```
 
+2. You can customize the project name in vcpkg.json as well, note that this must follow [vcpkg manifest rules](https://github.com/microsoft/vcpkg/blob/master/docs/users/manifests.md)
+
 2. Build and install the project
 
-3. Run using your mc\_rtc interface of choice, and setting `Enabled` to `MyController`
+3. Run using your [mc\_rtc] interface of choice, and setting `Enabled` to `MyController`
 
 [mc_rtc]: https://jrl-umi3218.github.io/mc_rtc/

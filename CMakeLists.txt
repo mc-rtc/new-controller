@@ -11,7 +11,9 @@ project(${PROJECT_NAME} LANGUAGES CXX VERSION 1.0.0)
 include(CTest)
 enable_testing()
 
-find_package(mc_rtc REQUIRED)
+if(NOT TARGET mc_rtc::mc_control)
+  find_package(mc_rtc REQUIRED)
+endif()
 
 add_subdirectory(src)
 
