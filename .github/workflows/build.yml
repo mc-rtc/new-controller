@@ -1,0 +1,64 @@
+name: CI of NewController
+
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
+    branches:
+      - '**'
+
+jobs:
+
+  clang-format:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install clang-format-6.0
+      run: |
+        sudo apt-get -qq update
+        sudo apt-get -qq remove clang-6.0 libclang1-6.0 libclang-common-6.0-dev libllvm6.0
+        sudo apt-get -qq install clang-format-6.0 clang-format
+    - name: Run clang-format-check
+      run: |
+        ./.clang-format-check.sh
+
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-18.04, ubuntu-20.04, macos-latest, windows-latest]
+        build-type: [RelWithDebInfo]
+        compiler: [gcc]
+    runs-on: ${{ matrix.os }}
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: recursive
+    - name: Install dependencies
+      uses: jrl-umi3218/github-actions/install-dependencies@master
+      with:
+        compiler: ${{ matrix.compiler }}
+        build-type: ${{ matrix.build-type }}
+        ubuntu: |
+          apt: libmc-rtc-dev
+          apt-mirrors:
+            multi-contact:
+              mirror: https://dl.bintray.com/gergondet/multi-contact-head
+              key: 892EA6EE273707C6495A6FB6220D644C64666806
+        macos: |
+          cask: gfortran
+          vcpkg:
+            repo: jrl-umi3218/vcpkg
+            user: ${{ github.actor }}
+            token: ${{ github.token }}
+        windows: |
+          vcpkg:
+            repo: jrl-umi3218/vcpkg
+            user: ${{ github.actor }}
+            token: ${{ github.token }}
+    - name: Build and test
+      uses: jrl-umi3218/github-actions/build-cmake-project@master
+      with:
+        compiler: ${{ matrix.compiler }}
+        build-type: ${{ matrix.build-type }}

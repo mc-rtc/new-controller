@@ -1,0 +1,9 @@
+{
+  "name": "NewController",
+  "version-string": "1.0.0",
+  "homepage": "",
+  "description": "NewController for mc_rtc",
+  "dependencies": [
+    "mc-rtc"
+  ]
+}
