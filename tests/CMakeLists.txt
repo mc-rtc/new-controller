@@ -8,4 +8,4 @@ endif()
 
 add_executable(test_controller main.cpp)
 target_link_libraries(test_controller PUBLIC mc_rtc::mc_control)
-add_test(test_controller test_controller "${CMAKE_CURRENT_BINARY_DIR}/etc/mc_rtc.yaml")
+add_test(NAME test_controller COMMAND test_controller "${CMAKE_CURRENT_BINARY_DIR}/$<CONFIG>/etc/mc_rtc.yaml")
