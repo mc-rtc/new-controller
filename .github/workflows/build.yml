@@ -56,6 +56,9 @@ jobs:
             repo: microsoft/vcpkg
             owner: mc-rtc
             token: "${{ secrets.GITHUB_TOKEN }}"
+            registries:
+            - repo: mc-rtc/vcpkg-registry
+              packages: [ spacevecalg, rbdyn, eigen-qld, sch-core, tasks, mc-rbdyn-urdf, mc-rtc-data, eigen-quadprog, state-observation, hpp-spline, mc-rtc ]
     - name: Build and test
       uses: jrl-umi3218/github-actions/build-cmake-project@master
       with:
